@@ -571,6 +571,50 @@ button.pill-outlined:hover { opacity: 1; background: var(--color-ink); color: va
 .segment-group .pill-neutral { background: transparent; color: var(--color-ink-soft); }
 .segment-group .pill-neutral:hover { background: rgba(0,0,0,0.04); opacity: 1; }
 .segment-group .pill-dark { background: var(--color-ink); color: var(--p-neutral-0); }
+
+/* ── INLINE MINI-CHARTS ───────────────────────────────────── */
+.spark-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 36px;
+}
+.spark-bars .spark-bar {
+  flex: 1;
+  min-width: 6px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 180ms ease;
+}
+.spark-bars .spark-bar.current { opacity: 1; }
+.spark-bars .spark-bar.high { opacity: 0.85; }
+.spark-bars.sm { height: 24px; gap: 2px; }
+.spark-bars.sm .spark-bar { min-width: 4px; }
+
+.mini-donut {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--t-radius-full);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.mini-donut::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: var(--t-radius-full);
+  background: var(--p-neutral-0-5);
+}
+.mini-donut .mini-donut-val {
+  position: relative;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+}
 button.pill { -webkit-tap-highlight-color: transparent; transition: transform 120ms ease, opacity 120ms ease; }
 button.pill:active { transform: scale(0.95); }
 button.pill:hover { opacity: 0.85; }
@@ -4688,6 +4732,16 @@ button.pill:hover { opacity: 0.85; }
               <span class="numeric" style="font-size:56px;font-weight:500;line-height:0.95;letter-spacing:-0.04em">Le 842k</span>
             </div>
             <div style="margin-top:var(--t-spacing-md);font-size:12px;opacity:0.8">+18% vs last month · 37 transactions</div>
+            <div class="spark-bars sm" style="margin-top:var(--t-spacing-md);color:white">
+              <div class="spark-bar" style="height:28%"></div>
+              <div class="spark-bar" style="height:35%"></div>
+              <div class="spark-bar high" style="height:58%"></div>
+              <div class="spark-bar" style="height:42%"></div>
+              <div class="spark-bar high" style="height:66%"></div>
+              <div class="spark-bar high" style="height:54%"></div>
+              <div class="spark-bar high" style="height:78%"></div>
+              <div class="spark-bar current" style="height:100%"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -4941,6 +4995,20 @@ button.pill:hover { opacity: 0.85; }
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7;margin-top:var(--t-spacing-md)">Net earned this month</div>
           <div class="numeric" style="font-size:48px;font-weight:500;letter-spacing:-0.045em;margin-top:var(--t-spacing-xxxs);line-height:1">Le 3.2M</div>
           <div style="font-size:12px;opacity:0.8;margin-top:var(--t-spacing-xs)">47 jobs · +18% vs last month</div>
+          <div class="spark-bars" style="margin-top:var(--t-spacing-md);color:white">
+            <div class="spark-bar" style="height:32%"></div>
+            <div class="spark-bar high" style="height:48%"></div>
+            <div class="spark-bar" style="height:40%"></div>
+            <div class="spark-bar high" style="height:62%"></div>
+            <div class="spark-bar high" style="height:58%"></div>
+            <div class="spark-bar" style="height:45%"></div>
+            <div class="spark-bar high" style="height:72%"></div>
+            <div class="spark-bar current" style="height:100%"></div>
+          </div>
+          <div class="flex items-center justify-between" style="font-size:10px;opacity:0.7;margin-top:var(--t-spacing-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.04em">
+            <span>8 weeks ago</span>
+            <span>This week</span>
+          </div>
         </div>
       </div>
 
