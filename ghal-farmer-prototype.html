@@ -3987,25 +3987,25 @@ button.pill:hover { opacity: 0.85; }
         </div>
       </div>
       <div class="section section-padded" style="display:flex;flex-direction:column;gap:var(--t-spacing-xs)">
-        <button class="row row-interactive" onclick="showToast('Farmer detail')">
+        <button class="row row-interactive" onclick="openFlow('flowAgentFarmerDetail')">
           <div class="avatar avatar-farm" style="width:36px;height:36px;font-size:12px">SK</div>
           <div class="row-body"><div class="row-title">Sorie Kamara</div><div class="row-sub">2 farms · 3.2 ha · Moyamba</div></div>
           <span class="pill pill-sm pill-success pill-dot">verified</span>
         </button>
         <div class="divider"></div>
-        <button class="row row-interactive" onclick="showToast('Farmer detail')">
+        <button class="row row-interactive" onclick="openFlow('flowAgentFarmerDetail')">
           <div class="avatar avatar-accent" style="width:36px;height:36px;font-size:12px">FK</div>
           <div class="row-body"><div class="row-title">Fatmata Kargbo</div><div class="row-sub">1 farm · 1.5 ha · Bo</div></div>
           <span class="pill pill-sm pill-warning pill-dot">pending</span>
         </button>
         <div class="divider"></div>
-        <button class="row row-interactive" onclick="showToast('Farmer detail')">
+        <button class="row row-interactive" onclick="openFlow('flowAgentFarmerDetail')">
           <div class="avatar avatar-secondary" style="width:36px;height:36px;font-size:12px">AB</div>
           <div class="row-body"><div class="row-title">Abu Bangura</div><div class="row-sub">3 farms · 5.1 ha · Kenema</div></div>
           <span class="pill pill-sm pill-success pill-dot">verified</span>
         </button>
         <div class="divider"></div>
-        <button class="row row-interactive" onclick="showToast('Farmer detail')">
+        <button class="row row-interactive" onclick="openFlow('flowAgentFarmerDetail')">
           <div class="avatar avatar-warning" style="width:36px;height:36px;font-size:12px">MJ</div>
           <div class="row-body"><div class="row-title">Mariama Jalloh</div><div class="row-sub">1 farm · 0.8 ha · Bombali</div></div>
           <span class="pill pill-sm pill-success pill-dot">verified</span>
@@ -4092,10 +4092,16 @@ button.pill:hover { opacity: 0.85; }
         <div class="flex justify-between" style="gap:var(--t-spacing-sm)">
           <div style="text-align:center;flex:1"><div style="font-size:20px;font-weight:500;color:var(--color-ink);letter-spacing:-0.04em" class="numeric">124</div><div style="font-size:11px;color:var(--color-ink-muted);margin-top:var(--t-spacing-xxxs)">Farmers</div></div>
           <div style="text-align:center;flex:1"><div style="font-size:20px;font-weight:500;color:var(--color-ink);letter-spacing:-0.04em" class="numeric">89</div><div style="font-size:11px;color:var(--color-ink-muted);margin-top:var(--t-spacing-xxxs)">Verified</div></div>
-          <div style="text-align:center;flex:1"><div style="font-size:20px;font-weight:500;color:var(--color-ink);letter-spacing:-0.04em" class="numeric">Le 8.4M</div><div style="font-size:11px;color:var(--color-ink-muted);margin-top:var(--t-spacing-xxxs)">Earned</div></div>
+          <button style="text-align:center;flex:1;background:transparent;border:0;padding:0;cursor:pointer" onclick="openFlow('flowAgentPayments')"><div style="font-size:20px;font-weight:500;color:var(--color-accent-ink);letter-spacing:-0.04em" class="numeric">Le 8.4M</div><div style="font-size:11px;color:var(--color-accent-ink);margin-top:var(--t-spacing-xxxs);font-weight:600">Earned ›</div></button>
         </div>
       </div>
       <div class="section">
+        <button class="row row-interactive" onclick="openFlow('flowAgentPayments')">
+          <div class="row-icon" style="background:var(--color-accent-soft)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-ink)" stroke-width="2"><use href="#icon-credit-card"/></svg></div>
+          <div class="row-body"><div class="row-title">Payments &amp; commissions</div><div class="row-sub">Le 842k ready to payout</div></div>
+          <svg class="row-chevron" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" fill="none"/></svg>
+        </button>
+        <div class="divider"></div>
         <button class="row row-interactive" onclick="openFlow('flowEditProfile')">
           <div class="row-icon" style="background:var(--p-neutral-0-5)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-soft)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div class="row-body"><div class="row-title">Edit profile</div></div>
@@ -4513,6 +4519,225 @@ button.pill:hover { opacity: 0.85; }
         <button class="btn-primary-cta" onclick="closeFlow('flowFilterAgent');showToast('89 farmers match filters')">Apply Filters</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- AGENT: Farmer Detail (operator, area, hours, loans, repayment) -->
+<div class="flow-overlay" id="flowAgentFarmerDetail">
+  <div class="flow-top-bar">
+    <button class="flow-back" onclick="closeFlow('flowAgentFarmerDetail')"><svg class="icon-svg" width="18" height="18" aria-hidden="true"><use href="#icon-arrow-left"/></svg></button>
+    <div class="flow-title">Farmer</div>
+    <div class="flow-action">
+      <button onclick="showToast('Calling Sorie…')" style="width:44px;height:44px;border-radius:var(--t-radius-full);background:var(--p-neutral-2);display:grid;place-items:center" aria-label="Call farmer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-phone"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="flow-body">
+    <div class="section-stack" style="padding-top:0">
+      <!-- Farmer identity -->
+      <div class="section" style="padding:var(--t-spacing-xs) var(--t-spacing-sm) 0">
+        <div class="card" style="padding:var(--t-spacing-lg)">
+          <div class="flex items-center" style="gap:var(--t-spacing-md)">
+            <div class="avatar avatar-farm" style="width:56px;height:56px;font-size:20px">SK</div>
+            <div class="flex-1">
+              <div class="flex items-center" style="gap:var(--t-spacing-xs)"><div style="font-size:18px;font-weight:600;color:var(--color-ink);letter-spacing:-0.025em">Sorie Kamara</div><span class="pill pill-sm pill-success pill-dot">verified</span></div>
+              <div style="font-size:12px;color:var(--color-ink-muted);margin-top:var(--t-spacing-xxxs)">+232 77 204 118 · NIN 1990-041234</div>
+              <div style="font-size:12px;color:var(--color-ink-muted);margin-top:var(--t-spacing-xxxs)">Taiama, Moyamba · 2 farms · 3.2 ha</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current work: area cultivated, hours, operator -->
+      <div class="section">
+        <div class="section-header"><span class="section-label">Current work</span><button class="text-link" style="font-size:12px;font-weight:600;color:var(--color-accent-ink)" onclick="openFlow('flowLandPrepDetail')">View live</button></div>
+        <div style="padding:0 var(--t-spacing-lg) var(--t-spacing-md)">
+          <div style="border-radius:var(--t-radius-xl);background:var(--color-accent-ink);color:white;padding:var(--t-spacing-md) var(--t-spacing-lg);position:relative;overflow:hidden">
+            <div class="hero-glow hero-glow-1" style="background:rgba(232,154,79,0.45)"></div>
+            <div style="position:relative">
+              <div class="flex items-center" style="gap:var(--t-spacing-xs)">
+                <span class="pill pill-sm" style="background:rgba(255,255,255,0.18);color:white;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:4px 10px">Ploughing</span>
+                <span class="pill pill-sm" style="background:var(--color-secondary);color:white;font-weight:700">in progress</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--t-spacing-md);margin-top:var(--t-spacing-md)">
+                <div>
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7">Area cultivated</div>
+                  <div class="numeric" style="font-size:28px;font-weight:500;letter-spacing:-0.04em;line-height:1">2.4 <span style="font-size:13px;opacity:0.75">ha</span></div>
+                </div>
+                <div>
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7">Hours worked</div>
+                  <div class="numeric" style="font-size:28px;font-weight:500;letter-spacing:-0.04em;line-height:1">4.5 <span style="font-size:13px;opacity:0.75">hrs</span></div>
+                </div>
+              </div>
+              <div class="divider" style="background:rgba(255,255,255,0.15);margin:var(--t-spacing-md) 0 var(--t-spacing-sm)"></div>
+              <div class="flex items-center" style="gap:var(--t-spacing-sm)">
+                <div class="avatar" style="width:32px;height:32px;font-size:11px;background:rgba(255,255,255,0.22);color:white">IJ</div>
+                <div class="flex-1">
+                  <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.04em">Operator</div>
+                  <div style="font-size:14px;font-weight:600;letter-spacing:-0.02em">Ibrahim Jalloh · Kubota M5-111</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loan status -->
+      <div class="section">
+        <div class="section-header"><span class="section-label">Loan provided</span><button class="text-link" style="font-size:12px;font-weight:600;color:var(--color-accent-ink)" onclick="openFlow('flowLoanDetail')">Details</button></div>
+        <div style="padding:0 var(--t-spacing-lg) var(--t-spacing-md)">
+          <div class="card" style="padding:var(--t-spacing-md)">
+            <div class="flex items-center justify-between" style="gap:var(--t-spacing-md)">
+              <div class="flex-1">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-ink-muted)">Outstanding</div>
+                <div class="numeric" style="font-size:28px;font-weight:500;letter-spacing:-0.04em;color:var(--color-ink);line-height:1;margin-top:2px">Le 420k</div>
+                <div style="font-size:12px;color:var(--color-ink-muted);margin-top:var(--t-spacing-xxs)">of Le 1.2M · 3 of 6 instalments paid</div>
+              </div>
+              <span class="pill pill-sm pill-success">on track</span>
+            </div>
+            <div style="height:6px;border-radius:var(--t-radius-full);background:var(--p-neutral-0-5);margin-top:var(--t-spacing-sm);overflow:hidden">
+              <div style="height:100%;width:65%;border-radius:var(--t-radius-full);background:var(--color-validated)"></div>
+            </div>
+            <div class="flex justify-between" style="margin-top:var(--t-spacing-xs);font-size:11px;color:var(--color-ink-muted)">
+              <span>65% repaid</span>
+              <span class="numeric">Next: Le 200k · 2 May</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent repayments -->
+      <div class="section">
+        <div class="section-header"><span class="section-label">Repayment history</span></div>
+        <div style="padding:0 var(--t-spacing-lg) var(--t-spacing-md)">
+          <div class="card" style="padding:var(--t-spacing-md)">
+            <div class="flex items-center justify-between" style="padding:var(--t-spacing-xs) 0"><div><div style="font-size:13px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em">12 Apr 2026</div><div style="font-size:11px;color:var(--color-ink-muted)">Orange Money</div></div><div class="numeric" style="font-size:14px;font-weight:600;color:var(--color-validated)">+Le 200k</div></div>
+            <div class="divider"></div>
+            <div class="flex items-center justify-between" style="padding:var(--t-spacing-xs) 0"><div><div style="font-size:13px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em">12 Mar 2026</div><div style="font-size:11px;color:var(--color-ink-muted)">Orange Money</div></div><div class="numeric" style="font-size:14px;font-weight:600;color:var(--color-validated)">+Le 200k</div></div>
+            <div class="divider"></div>
+            <div class="flex items-center justify-between" style="padding:var(--t-spacing-xs) 0"><div><div style="font-size:13px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em">12 Feb 2026</div><div style="font-size:11px;color:var(--color-ink-muted)">Orange Money</div></div><div class="numeric" style="font-size:14px;font-weight:600;color:var(--color-validated)">+Le 200k</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:var(--t-spacing-xl)"></div>
+    </div>
+  </div>
+  <div class="bottom-action-bar">
+    <button class="bottom-action-bar-secondary" onclick="openFlow('flowInvoice')">
+      <svg class="icon-svg" width="16" height="16" aria-hidden="true"><use href="#icon-file-text"/></svg> Invoices
+    </button>
+    <button class="btn-primary-cta" onclick="openFlow('flowVisitDetail')">
+      <svg class="icon-svg" width="18" height="18" aria-hidden="true"><use href="#icon-map-pin"/></svg> Schedule Visit
+    </button>
+  </div>
+</div>
+
+<!-- AGENT: Payments / Commissions -->
+<div class="flow-overlay" id="flowAgentPayments">
+  <div class="flow-top-bar">
+    <button class="flow-back" onclick="closeFlow('flowAgentPayments')"><svg class="icon-svg" width="18" height="18" aria-hidden="true"><use href="#icon-arrow-left"/></svg></button>
+    <div class="flow-title">Payments</div>
+    <div class="flow-action"></div>
+  </div>
+  <div class="flow-body">
+    <div class="section-stack" style="padding-top:0">
+      <!-- Hero: total earned + payout CTA -->
+      <div class="section" style="padding:var(--t-spacing-xs) var(--t-spacing-sm) 0">
+        <div style="border-radius:var(--t-radius-xl);background:var(--color-accent-ink);color:white;padding:var(--t-spacing-lg);position:relative;overflow:hidden">
+          <div class="hero-glow hero-glow-1" style="background:rgba(232,154,79,0.55)"></div>
+          <div style="position:relative">
+            <div class="flex items-center justify-between">
+              <span class="pill pill-sm" style="background:rgba(255,255,255,0.18);color:white;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:4px 10px">This month · Apr</span>
+              <span class="pill pill-sm" style="background:var(--color-secondary);color:white;font-weight:700">Payout ready</span>
+            </div>
+            <div style="margin-top:var(--t-spacing-md);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7">Commission earned</div>
+            <div class="flex items-end" style="margin-top:var(--t-spacing-xxs);gap:var(--t-spacing-xs)">
+              <span class="numeric" style="font-size:56px;font-weight:500;line-height:0.95;letter-spacing:-0.04em">Le 842k</span>
+            </div>
+            <div style="margin-top:var(--t-spacing-md);font-size:12px;opacity:0.8">+18% vs last month · 37 transactions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Split: customer products vs farmer bookings -->
+      <div class="section">
+        <div class="section-header"><span class="section-label">Where it came from</span></div>
+        <div style="padding:0 var(--t-spacing-lg) var(--t-spacing-md)">
+          <div class="card" style="padding:var(--t-spacing-md)">
+            <!-- Stacked bar -->
+            <div style="display:flex;height:10px;border-radius:var(--t-radius-full);overflow:hidden;background:var(--p-neutral-0-5)">
+              <div style="width:62%;background:var(--color-accent-ink)"></div>
+              <div style="width:38%;background:var(--color-secondary)"></div>
+            </div>
+            <div class="flex justify-between" style="margin-top:var(--t-spacing-sm)">
+              <div>
+                <div class="flex items-center" style="gap:var(--t-spacing-xxs)"><span style="width:8px;height:8px;border-radius:50%;background:var(--color-accent-ink)"></span><span style="font-size:11px;color:var(--color-ink-muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:600">Farmer machine bookings</span></div>
+                <div class="numeric" style="font-size:18px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em;margin-top:2px">Le 522k</div>
+                <div style="font-size:11px;color:var(--color-ink-muted)">62% · 21 bookings</div>
+              </div>
+              <div style="text-align:right">
+                <div class="flex items-center justify-end" style="gap:var(--t-spacing-xxs)"><span style="font-size:11px;color:var(--color-ink-muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:600">Customer products</span><span style="width:8px;height:8px;border-radius:50%;background:var(--color-secondary)"></span></div>
+                <div class="numeric" style="font-size:18px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em;margin-top:2px">Le 320k</div>
+                <div style="font-size:11px;color:var(--color-ink-muted)">38% · 16 orders</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent commissions -->
+      <div class="section">
+        <div class="section-header"><span class="section-label">Recent commissions</span><button class="text-link" style="font-size:12px;font-weight:600;color:var(--color-accent-ink)" onclick="showToast('All commissions')">See all</button></div>
+        <div style="padding:0 var(--t-spacing-lg) var(--t-spacing-md)">
+          <div class="card" style="padding:var(--t-spacing-md)">
+            <div class="flex items-center" style="gap:var(--t-spacing-md);padding:var(--t-spacing-xs) 0">
+              <div style="width:36px;height:36px;border-radius:var(--t-radius-full);background:var(--color-accent-soft);display:grid;place-items:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-ink)" stroke-width="2.2"><use href="#icon-tractor"/></svg></div>
+              <div class="flex-1"><div style="font-size:13px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em">Ploughing · Sorie Kamara</div><div style="font-size:11px;color:var(--color-ink-muted)">12 Apr · Machine booking · 5%</div></div>
+              <div class="numeric" style="font-size:14px;font-weight:600;color:var(--color-validated)">+Le 28k</div>
+            </div>
+            <div class="divider"></div>
+            <div class="flex items-center" style="gap:var(--t-spacing-md);padding:var(--t-spacing-xs) 0">
+              <div style="width:36px;height:36px;border-radius:var(--t-radius-full);background:var(--color-secondary-soft);display:grid;place-items:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2.2"><use href="#icon-package"/></svg></div>
+              <div class="flex-1"><div style="font-size:13px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em">Fertiliser order · Abu Bangura</div><div style="font-size:11px;color:var(--color-ink-muted)">11 Apr · Customer product · 4%</div></div>
+              <div class="numeric" style="font-size:14px;font-weight:600;color:var(--color-validated)">+Le 18k</div>
+            </div>
+            <div class="divider"></div>
+            <div class="flex items-center" style="gap:var(--t-spacing-md);padding:var(--t-spacing-xs) 0">
+              <div style="width:36px;height:36px;border-radius:var(--t-radius-full);background:var(--color-accent-soft);display:grid;place-items:center;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-ink)" stroke-width="2.2"><use href="#icon-tractor"/></svg></div>
+              <div class="flex-1"><div style="font-size:13px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em">Harrowing · Fatmata Kargbo</div><div style="font-size:11px;color:var(--color-ink-muted)">10 Apr · Machine booking · 5%</div></div>
+              <div class="numeric" style="font-size:14px;font-weight:600;color:var(--color-validated)">+Le 22k</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payout account -->
+      <div class="section">
+        <div class="section-header"><span class="section-label">Payout to</span></div>
+        <div style="padding:0 var(--t-spacing-lg) var(--t-spacing-md)">
+          <div class="card" style="padding:var(--t-spacing-md)">
+            <div class="flex items-center" style="gap:var(--t-spacing-md)">
+              <div style="width:40px;height:40px;border-radius:var(--t-radius-full);background:var(--color-secondary-soft);display:grid;place-items:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2.2"><use href="#icon-credit-card"/></svg></div>
+              <div class="flex-1">
+                <div style="font-size:14px;font-weight:600;color:var(--color-ink);letter-spacing:-0.02em">Orange Money</div>
+                <div style="font-size:12px;color:var(--color-ink-muted)">+232 •• •• •• 1157 · Mohamed Bangura</div>
+              </div>
+              <button class="text-link" style="font-size:12px;font-weight:600;color:var(--color-accent-ink)" onclick="showToast('Change payout account')">Change</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:var(--t-spacing-xl)"></div>
+    </div>
+  </div>
+  <div class="bottom-action-bar">
+    <button class="bottom-action-bar-secondary" onclick="showToast('Statement downloaded')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Statement
+    </button>
+    <button class="btn-primary-cta" onclick="showToast('Payout requested · Le 842k to Orange Money')">Request Payout <svg class="icon-svg" width="18" height="18" aria-hidden="true"><use href="#icon-arrow-right"/></svg></button>
   </div>
 </div>
 
