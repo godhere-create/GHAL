@@ -549,6 +549,28 @@ input:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2p
 .pill-info { background: var(--color-secondary-soft); color: var(--color-secondary); }
 .pill-dark { background: var(--color-ink); color: var(--p-neutral-0); }
 .pill-farm { background: var(--color-validated-soft); color: var(--color-validated); }
+.pill-outlined {
+  background: transparent;
+  border: 1.5px solid var(--color-ink);
+  color: var(--color-ink);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+button.pill-outlined:hover { opacity: 1; background: var(--color-ink); color: var(--p-neutral-0); }
+.segment-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--p-neutral-2);
+  border-radius: var(--t-radius-full);
+  padding: 4px;
+}
+.segment-group .pill { border-radius: var(--t-radius-full); }
+.segment-group .pill-neutral { background: transparent; color: var(--color-ink-soft); }
+.segment-group .pill-neutral:hover { background: rgba(0,0,0,0.04); opacity: 1; }
+.segment-group .pill-dark { background: var(--color-ink); color: var(--p-neutral-0); }
 button.pill { -webkit-tap-highlight-color: transparent; transition: transform 120ms ease, opacity 120ms ease; }
 button.pill:active { transform: scale(0.95); }
 button.pill:hover { opacity: 0.85; }
@@ -2383,7 +2405,7 @@ button.pill:hover { opacity: 0.85; }
           <div style="font-size:20px;font-weight:500;color:var(--color-ink);letter-spacing:-0.04em">Loan details</div>
           <div><div style="font-size:12px;font-weight:500;color:var(--color-ink-muted);margin-bottom:var(--t-spacing-xs)">Loan Amount (Le)</div><input class="auth-input" type="text" placeholder="e.g. 5,000,000" value="5,000,000" style="font-variant-numeric:tabular-nums"></div>
           <div><div style="font-size:12px;font-weight:500;color:var(--color-ink-muted);margin-bottom:var(--t-spacing-xs)">Repayment Period</div>
-            <div style="display:flex;gap:var(--t-spacing-xs)">
+            <div class="segment-group">
               <button class="pill pill-md pill-neutral" onclick="togglePill(this)">3 months</button>
               <button class="pill pill-md pill-dark" onclick="togglePill(this)">6 months</button>
               <button class="pill pill-md pill-neutral" onclick="togglePill(this)">12 months</button>
@@ -3300,8 +3322,11 @@ button.pill:hover { opacity: 0.85; }
         <div class="hero-glow hero-glow-1"></div>
         <div class="hero-glow hero-glow-2"></div>
         <div style="position:relative;z-index:1">
-          <div style="font-size:14px;opacity:0.85">Fresh this week</div>
-          <div style="font-size:24px;font-weight:500;letter-spacing:-0.04em;margin-top:var(--t-spacing-xxs)">Sierra Leone's Finest Produce</div>
+          <div class="flex items-center" style="gap:var(--t-spacing-xs)">
+            <span class="pill pill-sm" style="background:rgba(255,255,255,0.18);color:white;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:4px 10px">Fresh this week</span>
+            <span class="pill pill-sm" style="background:var(--color-secondary);color:white;font-weight:700">New arrivals</span>
+          </div>
+          <div style="font-size:26px;font-weight:500;letter-spacing:-0.04em;margin-top:var(--t-spacing-md);line-height:1.1">Sierra Leone's Finest Produce</div>
           <button class="btn btn-md btn-cta" style="margin-top:var(--t-spacing-md)" onclick="switchTab(1)">Browse Now</button>
         </div>
       </div>
@@ -3317,7 +3342,7 @@ button.pill:hover { opacity: 0.85; }
       <div class="section section-padded">
         <div class="flex items-center justify-between" style="margin-bottom:var(--t-spacing-sm)">
           <span style="font-size:15px;font-weight:600;color:var(--color-ink);letter-spacing:-0.025em">Recent Orders</span>
-          <button style="font-size:13px;font-weight:600;color:var(--color-accent-ink)" onclick="switchTab(3)">See all</button>
+          <button class="pill pill-outlined" onclick="switchTab(3)">See all</button>
         </div>
         <div class="flex items-center" style="gap:var(--t-spacing-sm);padding:var(--t-spacing-xs) 0">
           <div style="width:40px;height:40px;border-radius:var(--t-radius-sm);background:var(--color-validated-soft);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-validated)" stroke-width="2"><polyline points="22,4 12,14.01 9,11.01"/></svg></div>
@@ -3451,10 +3476,12 @@ button.pill:hover { opacity: 0.85; }
       <div style="font-size:24px;font-weight:500;color:var(--color-ink);letter-spacing:-0.04em">My Orders</div>
     </div>
     <div class="section-stack">
-      <div style="display:flex;gap:var(--t-spacing-xs);padding:0">
-        <button class="pill pill-md pill-dark" onclick="togglePill(this)">All</button>
-        <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Active</button>
-        <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Completed</button>
+      <div style="padding:0 var(--t-spacing-sm)">
+        <div class="segment-group">
+          <button class="pill pill-md pill-dark" onclick="togglePill(this)">All</button>
+          <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Active</button>
+          <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Completed</button>
+        </div>
       </div>
       <div class="section section-padded" style="display:flex;flex-direction:column;gap:var(--t-spacing-sm)">
         <button style="border-radius:var(--t-radius-xl);background:var(--p-neutral-0-5);padding:var(--t-spacing-md);text-align:left;width:100%" onclick="openFlow('flowOrderDetail')">
@@ -3916,9 +3943,13 @@ button.pill:hover { opacity: 0.85; }
         <div class="hero-glow hero-glow-1"></div>
         <div class="hero-glow hero-glow-2"></div>
         <div style="position:relative;z-index:1">
-          <div style="font-size:14px;opacity:0.85">This month</div>
-          <div style="font-size:36px;font-weight:500;letter-spacing:-0.045em;margin-top:var(--t-spacing-xxs);font-variant-numeric:tabular-nums">24 farmers</div>
-          <div style="font-size:14px;opacity:0.85;margin-top:var(--t-spacing-xxxs)">registered · <span style="font-weight:600">Le 1.2M earned</span></div>
+          <div class="flex items-center justify-between">
+            <span class="pill pill-sm" style="background:rgba(255,255,255,0.18);color:white;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:4px 10px">Apr · This month</span>
+            <span class="pill pill-sm" style="background:var(--color-secondary);color:white;font-weight:700">24 farmers</span>
+          </div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7;margin-top:var(--t-spacing-md)">Commission earned</div>
+          <div class="numeric" style="font-size:48px;font-weight:500;letter-spacing:-0.045em;margin-top:var(--t-spacing-xxxs);line-height:1">Le 1.2M</div>
+          <div style="font-size:12px;opacity:0.8;margin-top:var(--t-spacing-xs)">8 registered this week · +24% vs last month</div>
         </div>
       </div>
       <div class="section section-padded">
@@ -3945,7 +3976,7 @@ button.pill:hover { opacity: 0.85; }
       <div class="section section-padded">
         <div class="flex items-center justify-between" style="margin-bottom:var(--t-spacing-sm)">
           <span style="font-size:15px;font-weight:600;color:var(--color-ink);letter-spacing:-0.025em">Recent Registrations</span>
-          <button style="font-size:13px;font-weight:600;color:var(--color-accent-ink)" onclick="switchTab(1)">See all</button>
+          <button class="pill pill-outlined" onclick="switchTab(1)">See all</button>
         </div>
         <div class="flex items-center" style="gap:var(--t-spacing-sm);padding:var(--t-spacing-xs) 0">
           <div class="avatar avatar-farm" style="width:36px;height:36px;font-size:12px">SK</div>
@@ -4689,7 +4720,7 @@ button.pill:hover { opacity: 0.85; }
 
       <!-- Recent commissions -->
       <div class="section">
-        <div class="section-header"><span class="section-label">Recent commissions</span><button class="text-link" style="font-size:12px;font-weight:600;color:var(--color-accent-ink)" onclick="showToast('All commissions')">See all</button></div>
+        <div class="section-header"><span class="section-label">Recent commissions</span><button class="pill pill-outlined" onclick="showToast('All commissions')">See all</button></div>
         <div style="padding:0 var(--t-spacing-lg) var(--t-spacing-md)">
           <div class="card" style="padding:var(--t-spacing-md)">
             <div class="flex items-center" style="gap:var(--t-spacing-md);padding:var(--t-spacing-xs) 0">
@@ -4866,10 +4897,12 @@ button.pill:hover { opacity: 0.85; }
       </div>
     </div>
     <div class="section-stack">
-      <div style="display:flex;gap:var(--t-spacing-xs);padding:0">
-        <button class="pill pill-md pill-dark" onclick="togglePill(this)">Queue</button>
-        <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Completed</button>
-        <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Cancelled</button>
+      <div style="padding:0 var(--t-spacing-sm)">
+        <div class="segment-group">
+          <button class="pill pill-md pill-dark" onclick="togglePill(this)">Queue</button>
+          <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Completed</button>
+          <button class="pill pill-md pill-neutral" onclick="togglePill(this)">Cancelled</button>
+        </div>
       </div>
       <div class="section section-padded" style="display:flex;flex-direction:column;gap:var(--t-spacing-sm)">
         <div style="border-radius:var(--t-radius-xl);background:var(--p-neutral-0-5);padding:var(--t-spacing-md)">
